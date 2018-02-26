@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据筛选查找方法二</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			搜索：<input type="text" ng-model='search' />
+			 <table border="1" width="600">
+			 	<tr>
+			 		<td >编号	</td>
+			 		<td >点击数</td>
+			 		<td >标题</td>
+			 	</tr>
+			 	<tr ng-repeat='v in data | filter:search'>
+			 		<td>{{v.id}}</td>
+			 		<td>{{v.click}}</td>
+			 		<td>{{v.title}}</td>
+			 	</tr>
+			 </table>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope','$filter',function($scope,$filter){
+              $scope.data=[
+                 {id:1,click:100,title:'后盾人'},
+                 {id:2,click:400,title:'java'},
+                 {id:3,click:200,title:'后盾网'}
+              ];
+		}])
+	</script>
+	</body>
+</html>

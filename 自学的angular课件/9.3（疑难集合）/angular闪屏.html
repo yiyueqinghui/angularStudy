@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js中this在angular中指向问题</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+	   <!--class="ng-cloak" 可以防止页面未加载完成就显示，随后又再次显示。出现闪屏现象-->
+	   <!--比如该页面可能会先显示{{title}},随后angular加载完成后又显示为"我哦呜我哦我我"(即title说代表的内容)-->
+		<div ng-app='hd' ng-controller='ctr' class="ng-cloak">      
+			<div ng-bind='title'>{{title}}</div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctr',['$scope',function($scope){
+		    $scope.title = "我哦呜我哦我我";
+		}])
+	</script>
+</html>

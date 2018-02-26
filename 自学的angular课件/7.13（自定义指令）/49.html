@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令的replace</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<hd-cms><h1>大标题</h1></hd-cms>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdCms',[function(){
+			return {
+				restrict:'AEC', //restrict 指令的表现形式  A指attr属性，E指element元素，C指class样式 
+				template:'<h1>后盾人</h1>',
+				replace:false         //true则用template替换掉<hd-cms></hd-cms>,false则是只替换掉标签内所有元素和内容，不替换掉本身
+				                      //可以分别用true   false来来查看元素来加以理解
+			}
+		}])
+	</script>
+</html>

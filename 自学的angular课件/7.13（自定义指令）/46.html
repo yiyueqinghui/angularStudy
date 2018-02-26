@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<!--当A指令用-->
+			<div hdcms></div>
+			<hr />
+			<!--当element元素用-->
+			<hdcms></hdcms>
+			<hr>
+		   <!--当class用-->
+			<div class='hdcms'></div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC', //restrict 指令的表现形式  A指attr属性，E指element元素，C指class样式 
+				template:'后盾网系统'
+			}
+		}])
+	</script>
+</html>

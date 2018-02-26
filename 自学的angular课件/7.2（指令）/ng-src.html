@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+
+		<div ng-app='hd' ng-controller='ctrl'>
+			<p>
+				<!--图片链接可以引用，故可以显示图片-->
+	            <img ng-src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1505226964&di=875a813918f93fa7dfd3f2f88875f8c6&src=http://www.zhlzw.com/UploadFiles/Article_UploadFiles/201204/20120412123914329.jpg" width="200" height="200" />
+	            <!--图片链接被禁止引用，故无法显示图片-->
+				<img ng-src="{{urls}}" width="200" height="200">
+				<!--图片链接可以引用，故可以显示图片-->
+				<img ng-src="{{url}}" />
+			</p>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+            $scope.url = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2639088341,2223755776&fm=27&gp=0.jpg";
+            $scope.urls = "https://img3.doubanio.com/view/presto/small/public/t126391.jpg";
+		}])
+	</script>
+	</body>
+</html>

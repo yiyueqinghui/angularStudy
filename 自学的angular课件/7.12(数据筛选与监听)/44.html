@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据筛选查找</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			 <table border="1" width="600">
+			 	<tr>
+			 		<td >编号	</td>
+			 		<td >点击数</td>
+			 		<td >手机号</td>
+			 	</tr>
+			 	<tr ng-repeat='v in data'>
+			 		<td>{{v.id}}</td>
+			 		<td>{{v.click}}</td>
+			 		<td>{{v.title|trucate:5}}</td>
+			 	</tr>
+			 </table>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.filter('trucate',function(){
+			return function(mobile,len){
+				len = len?len:3;
+				return mobile.substr(0,11-len)+new String('*').repeat(len);
+			}
+		})
+		m.controller('ctrl',['$scope','$filter',function($scope,$filter){
+              $scope.data=[
+                 {id:1,click:100,title:'12345678958'},
+                 {id:2,click:400,title:'15525514205'},
+                 {id:3,click:200,title:'12589632581'}
+              ];
+//           
+		}])
+	</script>
+	</body>
+</html>

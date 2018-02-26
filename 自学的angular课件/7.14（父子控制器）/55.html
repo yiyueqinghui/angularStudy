@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>scope</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		  <div ng-controller='ctrl1'>
+		  	<input type="text" ng-model='color'/>	
+		  	<h1 hdcms color='color'></h1>
+		  </div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC',
+				template:'<span style="color:{{color}}" >houdunren</span> <input type="text" ng-model="color"/>',
+               // scope:{color:"=color"}      //=时直接取控制器里边的值，双向数据绑定，
+                                             //控制器与自定义的指令的双向数据绑定，即不论哪个数据发生改变，结果数据都会改变
+			}
+		}])
+		m.controller('ctrl1',['$scope',function($scope){
+			$scope.color = "green";
+		}])
+		
+	</script>
+</html>

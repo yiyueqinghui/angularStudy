@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	</head>
+	<style>
+		.mobile{
+			border: 1px solid #999999;
+			height: 500px;
+			display: flex;
+		}
+		.mobile dl{
+			margin:  0px;
+			padding: 0px;
+			display: flex;
+			flex-direction:column-reverse;
+			flex: 1;
+			margin:;
+		}
+		.mobile dl dt{
+			background: gray;
+			color: #ffff;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+			border: 1px solid #FFFFFF;
+			
+		}
+		.mobile dl dd{
+		      display: flex;
+		      flex-direction: column
+		}
+		.mobile dd a{
+			text-align: center;
+			padding:6px ;
+			text-decoration: none;
+		}
+	</style>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		  <div class="container">
+		  	<div class="row">
+		  		<div class="col-xs-4 app" >
+		  		   <div class="mobile">
+		  		   	 <dl>
+		  		   	 	<dt>游戏</dt>
+		  		   	 	<dd>
+		  		   	 		<a href="">红警</a>
+		  		   	 		<a href="">枪战</a>
+		  		   	 	</dd>
+		  		   	 </dl>
+		  		   	  <dl>
+		  		   	 	<dt>主页</dt>
+		  		   	 	<dd>
+		  		   	 		<a href="">红警</a>
+		  		   	 		<a href="">枪战</a>
+		  		   	 		<a href="">红警</a>
+		  		   	 		<a href="">枪战</a>
+		  		   	 	</dd>
+		  		   	 </dl>
+		  		   	 <dl>
+		  		   	 	<dt>电影</dt>
+		  		   	 	<dd>
+		  		   	 		<a href="">天龙八部</a>
+		  		   	 		<a href="">爱情公寓</a>
+		  		   	 	</dd>
+		  		   	 </dl>
+		  		   </div>
+		  		</div>
+		  		<div class="col-xs-8">
+		  			<div class="panel panel-default">
+		  			    <div class="panel-heading">
+		  			    	<h3 class="panel-heading">编辑</h3>
+		  			    </div>
+		  			    
+		  			    <div class="panel-body">
+		  			      panel-body
+		  			    </div>
+		  			</div>
+		  		</div>
+		  	</div>
+		  </div>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+
+		}])
+	</script>
+	</body>
+</html>

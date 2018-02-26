@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监听数据</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			标题： <input type="text" ng-model='title' />{{error}}  <br />
+			内容：<input type="text" ng-model='news.info' /> {{err}}
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+             $scope.title = '';
+             $scope.news ={info:''};
+//           基本数据类型的监听
+             $scope.$watch('title',function(n,o){
+             	$scope.error = n.length>3?'标题长度不能超过3位':'';
+             })
+//           监听对象
+             $scope.$watch('news',function(n){
+             	$scope.err = n.info.length>3?'内容长度不能过3位':'';
+             	console.log($scope.news)
+             },true);
+		}])
+	</script>
+	</body>
+</html>

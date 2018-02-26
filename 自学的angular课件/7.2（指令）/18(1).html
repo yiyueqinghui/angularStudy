@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-repeat的遍历（注意：track by $index）</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<ul>
+				<!--{{$first}}第一个    {{$last}}最后一个   {{$odd}}奇数-->
+				<!--{{$even}}偶数    {{$middle}}中间-->  
+				<li ng-repeat='(k,v) in data' style="{{$even?'color:red;':''}}">
+					{{k}}
+					名字：{{v.name}}&nbsp;&nbsp;
+					网址：{{v.url}}
+				</li>
+			</ul>
+			<hr />
+			<dl>
+				<!--angular循环的数据不允许有重复数据，有重复数据的话就无法进行循环-->
+				<!--如果有重复数据，且想循环，则可以通过track by $index 来区分数据（即通过$index下标来区分）-->
+				<dd ng-repeat='v in datas track by $index'>
+					{{v}}
+				</dd>
+			</dl>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+             $scope.data=[
+              {name:'后盾人01',url:'houdunren.com'},
+              {name:'后盾人02',url:'houdunren.com'},
+              {name:'后盾人03',url:'houdunren.com'},
+              {name:'后盾人04',url:'houdunren.com'}
+             ]
+             $scope.datas=['后端认','后盾网','https','https']
+		}])
+	</script>
+	</body>
+</html>

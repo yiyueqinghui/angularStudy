@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+
+	</head>
+	<style>
+		.ng-cloak{
+			display: none;
+		}
+	</style>
+	<!--如果将angular.js在页面底部引用，页面在从上向下加载解析时，angular的指令无法解析，全部当字符串显示在页面中，-->
+	   <!--只有解析到底部的angular.js时，才会将页面上的指令翻译过来，重新渲染页面；这时就会出现一个现象，先显示无法解析angular.js-->
+	   <!--页面，随后显示解析后的angular.js页面。平时页面较小，加载较快，所以看不见未渲染的页面，直接看到的时渲染后的页面-->
+	   <!--一旦加上ng-clock指令，会使得整个angular控制的页面先隐藏，在angular加载后再显示，防止未渲染的页面显示出来-->
+	   	
+	   <!--但如果将angular.js放在页面的顶部，则直接显示的就是angular.js渲染过后的页面，也就不需要加ng-cloak指令-->
+	<body ng-app="hd" class='ng-cloak'>
+		<div ng-controller="ctrl">
+			<!--数据的字符串拼接-->
+			{{name+' houdunwang.com'}}我是中国人
+			<hr />
+			{{user.username+'=>'+user.url}}
+			<hr />
+			<!--数据的计算-->
+			{{num * 2}}
+			<hr />
+			<!--命令的字符串拼接-->
+			<h3 ng-bind='name+"houdunwang.com"'></h3>
+		</div>
+	
+	<script type="text/javascript" src="../js/angular.js" ></script>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.name = "后盾网";
+			$scope.num = 8;
+			$scope.user = {'username':'后盾人','url':'houduanren.com'};
+		}])
+	</script>
+	</body>
+	
+</html>

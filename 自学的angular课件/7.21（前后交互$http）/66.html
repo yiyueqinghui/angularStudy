@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的$http请求</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<div ng-controller='ctrl1'>
+
+			</div>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		
+		m.controller('ctrl1',['$scope','$http',function($scope,$http){
+		      $http({
+		      	method:'get',
+		      	url:'66.php',
+		      }).then(function(response){
+		      	//成功是执行
+		      	console.log(response);
+		      },function(response){
+		      	//失败时执行
+		      	console.log(response);
+		      })
+		}])
+	
+	</script>
+	</body>
+</html>

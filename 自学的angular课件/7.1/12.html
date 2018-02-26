@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+                    console.log(angular.version);
+                    console.log(angular.lowercase('hOEielw'));
+                    console.log(angular.uppercase('eeggmyname'));
+                    var obj ={
+                    	name:'houduanren'
+                    };
+                    
+                    var obj2 = obj;            //会改变原来的数据
+                    obj2.name ='后盾网02';   
+                    console.log("02版",obj);
+                    
+
+                    var obj3 = {};
+//                  angular.copy() 复制一个新的对象
+                    angular.copy(obj,obj3);  //新的，再怎么也不会改变原来的数据
+                    obj3.name = '后盾网03';
+                    console.log("03版",obj);
+                    
+		}])
+	</script>
+	</body>
+</html>

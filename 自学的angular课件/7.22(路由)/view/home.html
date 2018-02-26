@@ -1,0 +1,16 @@
+
+<h1>{{name}}</h1>
+<ul>
+	<li ng-repeat='v in data'>
+		{{v.title}}
+	</li>
+</ul>
+<!--<a href="" ng-click='go("lists")'>跳转到列表页</a>-->
+
+<ul>
+	<li ng-repeat='v in user'>
+		                       <!--传递参数-->
+         <a href="" ui-sref='lists({id:v.id})'>{{v.name}}</a>
+	</li>
+</ul>
+

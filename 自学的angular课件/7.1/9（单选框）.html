@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8" >
+		<title>单选框</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			网站开启：
+			<!--单选框的应用-->
+			<input type="radio" ng-model='status' value="1" />开启
+			<input type="radio" ng-model='status' value="0" />关闭
+			{{status}}
+			<!--ng-show显示隐藏的应用-->
+			<div ng-show="status==0">
+				<h3>关闭原因：</h3>
+				<textarea>网站维护中。。。。。</textarea>
+			</div>
+		</div>
+		<script>
+			var a = angular.module('hd',[]);
+			a.controller('ctrl',['$scope',function($scope){
+			     $scope.status = 1;
+			}])
+		</script>
+	</body>
+</html>

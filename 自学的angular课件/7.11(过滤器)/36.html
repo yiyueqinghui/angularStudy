@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器03</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<!--字符串截取-->
+		<div ng-app='hd' ng-controller='ctrl'>
+		    {{name|limitTo:3}}
+		    <hr />
+		    {{name|limitTo:3:1}}   <!--//冲第一个开始，截取两个字符串-->
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+              $scope.name = '后盾网人人叫后盾';
+		}])
+	</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--readonly="readyonly"禁止修改输入框-->
+			商品：<input type="text" ng-model='goods.title' /> <br />
+			价格：<input type="text" ng-model='goods.price' readonly="readonly" /> <br />
+			数量： <input type="text" ng-model='goods.num' /><br />
+			<!--ng-value可以写表达式进行计算-->
+			总价：（ng-value）<input type="text" ng-value='goods.price*goods.num'/><br />
+			总价:(ng-model) <input type="text" ng-model='goods.price*goods.num'/>
+		</div>  
+	
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			$scope.goods = {title:'后盾网视频',price:11.9,num:2};
+		}])
+	</script>
+	</body>
+</html>

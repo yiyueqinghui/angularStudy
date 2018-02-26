@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器05</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<!--数据排序-->
+		<div ng-app='hd' ng-controller='ctrl'>
+		   {{data|orderBy:'id':false}}   <br />   <!--//false正序-->
+		   {{data|orderBy:'id':true}}    <br />         <!--//true倒叙-->
+		   {{data |orderBy:'click'}}
+		   <hr />
+		   <!--数据选取-->
+		   {{data | filter:'10'}}     <br />
+		   {{data | filter:'java':true}}      <br />    <!--true代表的是完全是前面的内容-->
+		   {{data|filter:'java':false}}               <!--false代表的时包含前面的内容-->
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+              $scope.data = [
+	              {id:1,click:200,title:'php'},
+	              {id:3,click:300,title:'java'},
+	              {id:2,click:100,title:'javascript'}
+              ]
+		}])
+	</script>
+	</body>
+</html>

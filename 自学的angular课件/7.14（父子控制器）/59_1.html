@@ -1,0 +1,27 @@
+
+<style>
+   .hdtas a{
+		text-decoration: none;
+        padding:10px;
+        border:1px solid black;
+	}
+	.hdtas a.active{
+		background:gray;
+	}
+	.hdtas ul{
+		width:200px;
+		height:auto;
+		padding:20px;
+		border: 1px solid black;
+		
+	}
+</style>
+<div class="hdtas">
+	<a href="" ng-class={active:$first} ng-repeat='v in data'>{{v.title}}</a>
+	<div class="lists" ng-repeat='v in data' ng-style='{display:$first?"block":"none"}'>
+		<ul >
+			<li ng-repeat='m in v.datas'>{{m.title}}</li>
+		</ul>
+	</div>
+	</div>
+</div>

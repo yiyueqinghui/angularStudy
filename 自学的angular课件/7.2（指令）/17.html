@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-if与ng-show区别     ng-disabled命令</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<input type="checkbox" ng-model='name' />
+			{{name}}
+			<!--ng-show控制显示隐藏是用display原理，元素一直都还在，-->
+			<div ng-show='name'> 显示了    </div>
+			<hr />
+			<input type="checkbox" ng-model='bool' />
+			{{bool}}
+			<!--ng-if控制显示隐藏是用的添加/移除元素的原理，隐藏后元素就会被删除-->
+			<div ng-if='bool'> 显示了    </div>
+			<hr />
+			<input type="checkbox" ng-model='status' />接受协议
+            <button  ng-click='copyright=!copyright'>查看协议</button>
+             <br />
+             <textarea ng-if='copyright'>协议内容、、、、、、</textarea>
+             <input type="submit" value="登陆" ng-disabled='!status' />
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+               $scope.copyright=false;        
+		}])
+	</script>
+	</body>
+</html>

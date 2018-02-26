@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令的transclude与templateUrl</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		<div hd-cms>11111</div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdCms',[function(){
+			return {
+				restrict:'AEC', //restrict 指令的表现形式  A指attr属性，E指element元素，C指class样式 
+//				template:'<h1>后盾人<div ng-transclude=""></div></h1>',
+//				transclude:true ,      //保留原内容 ng-transclude为指令放保留内容的地方
+				replace:true,
+				templateUrl:'../50.1.html'    //引用模板，这里是模板所在的相对路径  template与templateUrl不可同时出现
+			}
+		}])
+	</script>
+</html>

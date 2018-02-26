@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的$http请求的简写</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<div ng-controller='ctrl1'>
+
+			</div>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		
+		m.controller('ctrl1',['$scope','$http',function($scope,$http){
+		      $http({
+		      	method:'get',
+		      	cache:true,   //缓存请求的数据，防止多次请求同样的数据，延缓加载速率
+		      	url:'66.php',
+		      }).then(function(response){
+		      	//成功是执行
+		      	console.log(response);
+		      },function(response){
+		      	//失败时执行
+		      	console.log(response);
+		      });
+		      
+//		      简写
+              $http.get('66.php',{cache:true}).then(function(response){
+              	//成功时执行
+              },function(response){
+              	//失败时执行
+              });
+		}])
+	
+	</script>
+	</body>
+</html>

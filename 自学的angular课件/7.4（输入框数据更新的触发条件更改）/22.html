@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-class</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<style>
+		.red{
+			background: red;
+		}
+		.font{
+			font-size:50px;
+		}
+		.lock{
+			background: gray;
+		}
+		
+	</style>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--ng-class-->
+		    <div ng-class='{red:false,font:true}'>adgl</div>
+		    <hr />
+		    <table border="1" width="600">
+		    	<tr>
+		    		<td>编号</td>
+		    		<td>姓名</td>
+		    		<td>年龄</td>
+		    	</tr>
+		    	<!--根据条件改变样式-->
+		    	<tr ng-repeat='v in data' ng-class='{lock:v.status==0,red:v.age>30}'>
+		    		<td>{{v.id}}</td>
+		    		<td>{{v.username}}</td>
+		    		<td>{{v.age}}</td>
+		    	</tr>
+		    </table>
+		    <hr />
+		     <table border="1" width="600">
+		    	<tr>
+		    		<td>编号</td>
+		    		<td>姓名</td>
+		    		<td>年龄</td>
+		    	</tr>
+		    	<!--奇数行，偶数行不同样式-->
+		    	<tr ng-repeat='v in data' ng-class-odd='{lock:true}' ng-class-even='{red:true}'>
+		    		<td>{{v.id}}</td>
+		    		<td>{{v.username}}</td>
+		    		<td>{{v.age}}</td>
+		    	</tr>
+		    </table>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+                $scope.data=[
+                    {id:1,username:'xiaoming',age:25,status:1},
+                    {id:2,username:'xiaoli',age:25,status:0},
+                    {id:3,username:'xiaoming',age:32,status:1}
+                ]
+		}])
+	</script>
+	</body>
+</html>

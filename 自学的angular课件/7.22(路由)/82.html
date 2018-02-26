@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的路由 多视图嵌套</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+		<script type="text/javascript" src="../js/angular-ui-router.js" ></script>
+	</head>
+	
+	<body>
+		<!--路由是在控制器之上-->
+		<div ng-app='hd'>
+                <div ui-view=""></div>
+                <div ui-view="content"></div>
+		</div>
+	<script>
+		var m = angular.module('hd',['ui.router']);
+		m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+//          默认路由
+            $urlRouterProvider.otherwise('/my');
+//          定义路由规则
+             $stateProvider
+               .state('my',{
+             	 url:'/my',
+             	 views:{
+//           	 	@就是在ui-view=''的里边显示
+         	 		'@':{
+         	 			templateUrl:"view/my82.html"
+         	 		},
+         	 		'content':{
+         	 			template:'<h4>欢迎您的到来</h4>'
+         	 		}
+             	 }
+                })
+               .state('my.video',{
+             	 url:'/video',
+             	 views:{
+         	 		'son@my':{
+         	 			templateUrl:'view/video2.html'
+         	 		},
+//       	 		content@到顶级视图里边找，清空content
+         	 		'content@':{
+         	 			template:""
+         	 		}
+         	 		
+             	 }
+                })
+		}])
+
+		
+	</script>
+	</body>
+</html>

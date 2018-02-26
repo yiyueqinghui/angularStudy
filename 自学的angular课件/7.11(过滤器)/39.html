@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>函数过滤</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<button ng-click='order()'>数据排序改变</button>   <br />
+			{{data}}
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope','$filter',function($scope,$filter){
+              $scope.data=[
+                 {id:1,click:100,title:'后盾人'},
+                 {id:2,click:400,title:'java'},
+                 {id:3,click:200,title:'后盾网'}
+              ];
+              $scope.bol = true;
+              $scope.order = function(){
+              	$scope.bol = !$scope.bol;
+              	$scope.data = $filter('orderBy')($scope.data,'id',$scope.bol)
+              }
+		}])
+	</script>
+	</body>
+</html>

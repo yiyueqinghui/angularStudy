@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>js中this在angular中指向问题</title>
+		<!--<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>-->
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctr'>
+			<div ng-click='change()' >天下</div>
+			<br />
+			
+			<!--如果确实要使用js中的this,可以在函数中添加参数$event;再在定义函数中用event.target来找到当前元素-->
+			<div ng-click='change02($event)' >我的天下</div>
+			<br />
+			<div ng-click='change03(cons)' ng-blind='cons'>{{cons}}</div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctr',['$scope',function($scope){
+		    $scope.name ="分久必合，合久必分";
+		    $scope.cons = "传参数";
+		    $scope.change = function(){
+		      //注意在angular控制器里使用this,此时的this已经是指向该控制器,相等于$scope,而不是具体的操作对象
+//		                    注意jquery中的this和js中的thisz指向一样（所以使用jquery页无用）
+		        alert(this.innerText);                //由于在该控制器里边没定义innerText,故返回undefined
+		        
+		        alert(this.name);                    //this.name即$scope.name;
+		        
+		    };
+		    $scope.change02 = function(event){
+		    //此时的event.target相等于js中的this,指向当前的操作对象
+		       alert(event.target.innerHTML);
+		    };
+		    
+		    $scope.change03 = function(con){
+		       alert(con);
+		    }
+		}])
+	</script>
+</html>

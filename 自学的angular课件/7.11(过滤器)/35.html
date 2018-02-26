@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器02</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--大小写转化-->
+		   {{name|lowercase}}
+		   <hr />
+		   {{name|uppercase}}
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+           $scope.name = 'houDunHwang';
+		}])
+	</script>
+	</body>
+</html>

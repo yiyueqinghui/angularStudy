@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器01</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--货币符-->
+		     {{price|currency}}        <br />
+		     {{price|currency:'@'}}     <br />
+		     {{price|currency:'#':1}}   <br />
+		     
+		     <!--数值-->
+		     <!--保留两位小数-->
+		     {{price|number:2}}
+		</div>            
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+              $scope.price = 1234.5685;
+		}])
+	</script>
+	</body>
+</html>

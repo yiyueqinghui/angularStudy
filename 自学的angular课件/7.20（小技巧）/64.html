@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>$sce的应用场景</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{name}}
+			<hr />
+			<div ng-bind-html='name'></div>
+			<hr />
+			<!--使用过滤器-->
+			<div ng-bind-html='title | trustHtml'></div>
+			<div ng-bind-html='info | trustHtml'></div>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.filter('trustHtml',['$sce',function($sce){
+			return function(text){
+				return $sce.trustAsHtml(text);
+			}
+		}])
+		m.controller('ctrl',['$scope','$sce',function($scope,$sce){
+            $scope.name = $sce.trustAsHtml("<h1 style='color:red;'>houdunawang</h1>");
+            
+            $scope.title = '<h1>houdunren.com</h1>'
+            $scope.info = '<b style="color:red;">houdunren.com</b>'
+		}])
+	</script>
+	</body>
+</html>

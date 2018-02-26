@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选项卡</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--data='data' 引入父级的数据-->
+             <hdcms data='data'></hdcms>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+			 $scope.data = [
+				         {id:1,title:'培训',datas:[
+				             {id:1,title:'java'},
+				             {id:2,title:'phython'}
+				         ]},
+				         {id:2,title:'开源代码',datas:[
+				             {id:1,title:'javascript'},
+				             {id:2,title:'php'}
+				         ]}
+				     ];
+		}])
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC',
+				templateUrl:'59_1.html',
+				scope:{
+					data:"=data"
+				},
+				link:function(scope,elem,attr){
+					$(elem).delegate('a','click',function(){
+						$('a').removeClass('active');
+						$(this).addClass('active');
+//						查找元素出现的位置
+						var index = $(this).index();
+						$(elem).find('.lists').hide();
+						$(elem).find('.lists').eq(index).show();
+					})
+				}
+//				controller:['$scope',function($scope){
+//				     $scope.data = [
+//				         {id:1,title:'培训',datas:[
+//				             {id:1,title:'java'},
+//				             {id:2,title:'phython'}
+//				         ]},
+//				         {id:2,title:'开源代码',datas:[
+//				             {id:1,title:'javascript'},
+//				             {id:2,title:'php'}
+//				         ]}
+//				     ];
+//				     
+//				}]
+			}
+		}])
+		
+		
+	</script>
+</html>

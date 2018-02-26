@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app='hd'>
+	<head>
+		<meta charset="UTF-8" >
+		<title>$scope和$rootScrope区别，用于兄弟级控制器传递数据</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body ng-controller='ctr'>
+		{{say}} <input type="text" ng-model='say' />  <br />
+		{{data.info}} <input type="text" ng-model='data.info' />
+		<hr />
+		<!--兄弟控制器-->
+		<div ng-controller='ctrl'>
+			{{name}} <br />    <!--自身控制器的数据-->
+			{{$root.age}} <input type="number" ng-model='$root.age' /> <br/>   <!--来自其他控制器的全局数据 ，自身改变影响到全局-->
+			{{$root.all.myage}} <input type="number" ng-model='$root.all.myage'/>  <br />   <!--来自其他控制器的全局数据 ，自身改变影响到全局-->
+			{{say}} <input type="text" ng-model='say' />  <br />      <!--继承父级的数据（继承隔离的情况）-->
+		   {{data.info}} <input type="text" ng-model='data.info' />    <!--继承父级的数据（继承不隔离的情况）-->
+			<hr />
+		</div>
+		<hr />
+		<div ng-controller='ctr2'>
+			{{person}}  <br />     <!--自身控制器定义的局部变量（$scope）-->  
+			{{age}} <input type="number" ng-model='age' />   <br />            <!--自身控制器定义的全局变量（$rootScrop）,自己改变不影响到全局,数据隔离-->
+			{{all.myage}} <input type="number" ng-model='all.myage'/>  <br />    <!--自身控制器定义的全局变量（$rootScrop）,自己改变影响到全局,数据不隔离-->
+			{{say}} <input type="text" ng-model='say' />  <br />      <!--继承父级的数据（继承隔离的情况）-->
+		   {{data.info}} <input type="text" ng-model='data.info' />    <!--继承父级的数据（继承不隔离的情况）-->
+		
+		</div>
+		<script>
+			var a = angular.module('hd',[]);
+			a.controller('ctr',['$scope',function($scope){
+				$scope.say = 'hellow world!';
+				$scope.data = {'info':'you are nice!'};
+			}])
+			a.controller('ctrl',['$scope',function($scope){
+				$scope.name = '陈军';
+			}]);
+			a.controller('ctr2',['$scope','$rootScope',function($scope,$rootScope){
+				$scope.person = 'chenjun';
+				$rootScope.age = 25;
+				                              //$rootScope 为根目录数据，理解为全局变量，即该控制器之外也可以访问的到，
+                                               //只不过访问的时候要在数据前加上$root;	eg:$root.age
+               $rootScope.all = {'myage':25};
+			}]);
+		</script>
+	</body>
+</html>

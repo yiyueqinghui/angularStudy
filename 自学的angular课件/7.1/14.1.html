@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>读取本地浏览器缓存的数据</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			{{data}}
+			{{data.name}}  <!--取不到-->
+			<hr />
+			{{data01}}
+			{{data01.name}}
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+//			data 拿到的数据是个字符串格式,(因为上次存储时存为了字符串格式,所以此处取不到data.name);
+			$scope.data=localStorage.getItem('data');
+			alert($scope.data);    //字符串
+			
+			
+//			data01 又将取到的字符串通过angular.fromJson()转化为对象格式
+			$scope.data01=angular.fromJson(localStorage.getItem('data'));
+			alert($scope.data01);    //对象
+		}])
+	</script>
+	</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>自定义指令的template</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<!--指令的命名，js部分使用驼峰命名(例如：hdCms)，html部分则转化为-链接的形式(例如：hd-cms)-->
+			<div hd-cms color='blue'>1111111</div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdCms',[function(){
+			return {
+				restrict:'AEC', //restrict 指令的表现形式  A指attr属性，E指element元素，C指class样式 
+				template:function(elem,attr){
+					return '<span style="color:'+attr["color"]+'">'+elem.html()+'</span>';
+				}
+			}
+		}])
+	</script>
+</html>

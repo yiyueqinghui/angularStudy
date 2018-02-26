@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+//            新增对象
+//            var obj={name:'后盾网'};
+//            angular.extend(obj,{obj:'houdunwang.com',web:'后盾人'});
+//            console.log(obj);
+              
+              var data=[
+                        {name:'后盾网',url:'houdunwang.com'},
+                        {name:'后盾人',url:'houdunren'}
+                       ];
+              var obj = {name:'后盾网',url:'houdunwang.com'};
+//            angular 遍历数组
+              angular.forEach(data,function(v,k){
+//             	v 每一条信息(对象)  k 下标
+               	console.log(k);
+               	 v.url = "www."+v.url;
+               	 console.log(v);
+               })
+//            angular  遍历对象
+              angular.forEach(obj,function(v,k){
+//            	v 对象的属性值     k 属性名
+              	console.log(k);
+              	console.log(v);
+              })
+              
+              
+		}])
+	</script>
+	</body>
+</html>
+

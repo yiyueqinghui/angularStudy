@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的路由 多视图嵌套</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+		<script type="text/javascript" src="../js/angular-ui-router.js" ></script>
+	</head>
+	<style>
+		div[ui-view=top] ul{
+			display: flex;
+            justify-content: flex-start;
+		}
+		div[ui-view=top] li{
+			padding: 15px;
+			list-style: none;
+		}
+		div[ui-view=left]{
+			width: 200px;
+			height: 100px;
+			display: inline-block;
+			background: gray;
+		}
+		div[ui-view=right]{
+			width: 200px;
+			height: 100px;
+			margin-left: 25px;
+			display: inline-block;
+			background: red;
+		}
+	</style>
+	<body>
+		<!--路由是在控制器之上-->
+		<div ng-app='hd'>
+                <div ui-view="top"></div>
+                <div ui-view="left"></div>
+                <div ui-view="right"></div>
+		</div>
+	<script>
+		var m = angular.module('hd',['ui.router']);
+		m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+//          默认路由
+            $urlRouterProvider.otherwise('/my');
+//          定义路由规则
+             $stateProvider
+               .state('my',{
+             	 url:'/my',
+             	 views:{
+         	 		top:{
+//       	 			注意:只能使用view文件夹存放数据
+         	 			templateUrl:"view/top.html"
+         	 		},
+         	 		left:{
+         	 			templateUrl:"view/my.html"
+         	 		},
+         	 		right:{
+         	 			templateUrl:"view/about.html"
+         	 		}
+             	 }
+                })
+               .state('video',{
+             	 url:'/video',
+             	 views:{
+         	 		top:{
+         	 			templateUrl:"view/top.html"
+         	 		},
+         	 		left:{
+         	 			templateUrl:"view/videoLeft.html"
+         	 		},
+         	 		right:{
+         	 			templateUrl:"view/videoRight.html"
+         	 		}
+             	 }
+                })
+                
+		}])
+
+		
+	</script>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>缓存数据到本地浏览器</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+            $scope.data={name:'后盾网'};
+            console.log($scope.data.name);
+//          把对象转换成字符串形式存储到本地浏览器   （本地存储刷新数据不会消失，）
+//          可以在控制台Application中的localStorage中找到名为data的json数据
+            localStorage.setItem('data',angular.toJson($scope.data));
+            
+		}])
+	</script>
+	</body>
+</html>

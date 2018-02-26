@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ng-trim指令</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		   <form action="" action="">
+		   	<!--ng-trim='false' 输入框中如果输入了多个空格，提交时也会按原来的提交，不会将多个空格变成一个或省去，一般用不到-->
+		   	标题：<input type="text" value="" name="title" ng-trim='false' ng-model="title" /><br />
+		   <input type="submit" />
+		   {{title}}
+		   </form>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+                $scope.title = '';
+		}])
+	</script>
+	</body>
+</html>

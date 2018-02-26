@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/angular.js" ></script>
+	</head>
+	<body>
+      <div ng-app="hd" ng-controller="ctrl">
+      	{{name}}
+      	<p ng-bind='name'></p>
+      	<input type="text" ng-model='name' />
+      </div>
+      <script>
+      	var a = angular.module('hd',[]);
+//    	双向数据绑定  依赖于中间的视图模型viewModel,每次视图模型发生变化，页面都会重新渲染一次
+      	a.controller('ctrl',['$scope',function($scope){
+//    		$scope是数据模型
+      		$scope.name = '后盾网';
+      	}])
+      </script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular缓存</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+			<div ng-controller='ctrl1'>
+					{{data}}
+			</div>
+			<div ng-controller='ctrl2'>
+				{{data}}
+			</div>
+		
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		
+		m.controller('ctrl1',['$scope','$cacheFactory',function($scope,$cacheFactory){
+//          定义表存储数据
+            var obj = $cacheFactory("hdphp");
+//          使用put往里边放数据
+            obj.put('web',{name:"houdunren",url:"houdunwang.com"});
+            console.log(obj);
+//          使用get获取数据
+            $scope.data = obj.get('web').name;
+            console.log(obj.get('web'));
+//          删除缓存数据
+//          删除缓存的某条数据  obj.remove('web');
+//          或者 全部删除缓存数据  obj.removeAll() 
+            console.log(obj.get('web'));
+           
+            
+		}])
+		m.controller('ctrl2',['$scope','$cacheFactory',function($scope,$cacheFactory){
+//	    	获取存储数据的表
+           var obj = $cacheFactory.get('hdphp');
+           $scope.data = obj.get('web').name;
+            
+		}])
+	</script>
+	</body>
+</html>

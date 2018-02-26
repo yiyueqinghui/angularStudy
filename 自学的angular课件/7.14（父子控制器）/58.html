@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>link方法</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		  <!--<div ng-controller='ctrl1'>-->
+             <hdcms title='后盾网' bgcolor='red' fontcolor='#fff'></hdcms>
+		  <!--</div>-->
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC',
+				scope:{
+					title:'@'
+				},
+				link:function(scope,elem,attr){
+					$(elem).css({background:attr['bgcolor'],color:attr['fontcolor']}).html(scope.title);
+				}        //dom操作放到link里边
+                
+			}
+		}])
+		
+		
+	</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的$http请求的post后台接受数据的几种形式</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<!--由于此节为后台php接受数据的注意，无法书写，若有不懂，看视频-->
+		<div ng-app='hd'>
+			<div ng-controller='ctrl1'>
+
+			</div>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		
+		m.controller('ctrl1',['$scope','$http',function($scope,$http){
+		     $http({
+		     	method:'post',
+		     	url:'1.php',
+		     	data:{id:1,name:"后盾人"}
+		     }).then(function(response){
+		     	console.log(response);
+		     },function(response){
+		          
+		     })
+		     	
+	    }]);
+	</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>父控制器与子控制器</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		  <div ng-controller='ctrl1'>
+		     <input type="text" ng-model='name'/>  	{{name}}   <br />
+		     <input type="text" ng-model='data.age' / >   {{data.age}}
+		     	<hr />
+		  	 <div ng-controller='ctrl2'>
+		  	 	<input type="text" ng-model='name'/>{{name}}   <br />
+		        <input type="text" ng-model='data.age' / >   {{data.age}}
+		        	<hr />
+		  	 </div>
+		  	 <div ng-controller='ctrl3'>
+		  	 	{{name}} <br /> {{data.age}}
+		  	 </div>
+		  </div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+//		父控制器与子控制器的关系：
+//            1,当子控制器中没有定义所要加载的数据时,系统会自动向上级作用域寻找数据
+//            2,当父作用域与子作用域定义了相同的命名的变量数据时,若子作用域访问,则先访问自身作用域内,
+//                  若自身作用域内没有,则开始向父级的作用域查询；
+//            3,当子控制器访问父控制器的数据时（注意：这个数据必须是基本数据类型，比如：字符串，数值等）,若子控制器数据变化,则不会影响到父作用域的数据;
+//              相反,若父控制器内的数据由于客户输入变化时,则会影响到子控制器的数据;
+//            4,注意引用类型数据与基本类型 数据的区别：当数据是对象时，若子控制器改变数据，则全部都改变数据，并非只是本控制器内的数据改变，而是全部改变
+		m.controller('ctrl1',['$scope',function($scope){
+			$scope.name = '后盾人';
+			$scope.data = {age:12}
+		}])
+		m.controller('ctrl2',['$scope',function($scope){
+//			
+		}])
+		m.controller('ctrl3',['$scope',function($scope){
+//			
+		}])
+	</script>
+</html>

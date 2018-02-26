@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>事件方法</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<!--<div ng-dblclick='show()' >hdphp</div>-->
+			<hr />
+			
+			<!--ng-change事件需要ng-model绑定-->
+			<!--<input type="text" ng-change='show()' ng-model='title' />-->
+			<hr />
+			<!--<input type="text" ng-blur='show()' />-->
+			<hr />
+			<!--<input type="text" ng-focus='show()' />-->
+			<!--{{data}}-->
+			<hr />
+			<!--<input type="text" ng-keydown='show()' />
+			{{data}}-->
+			<hr />
+			<input type="text" ng-mousedown='show()' />
+			{{data}}
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+            $scope.show = function(){
+            	$scope.data = 'https'
+            }
+		}])
+	</script>
+	</body>
+</html>

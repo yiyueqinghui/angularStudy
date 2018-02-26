@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的路由设置控制器内跳转</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+		<script type="text/javascript" src="../js/angular-ui-router.js" ></script>
+	</head>
+	<body>
+		<!--路由是在控制器之上-->
+		<div ng-app='hd'>
+			<!--使用href的锚点跳转如下,注意参数为url的参数-->
+			<!--<a href="#/home">首页</a>-->
+			<!--或者使用指令如下，参数为state的第一个参数-->
+			<a href="" ui-sref='home'>首页</a>
+			<a href="#/lists">列表页</a>
+                <div ui-view>提示：你访问的页面不存在</div>
+		</div>
+	<script>
+		var m = angular.module('hd',['ui.router']);
+		m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+//          默认路由
+            $urlRouterProvider.otherwise('');
+//          定义路由规则
+             $stateProvider
+               .state('default',{
+             	 url:'',
+             	 template:'',
+                })
+               .state('home',{
+             	 url:'/home',
+             	 templateUrl:'view/home.html',
+//           	 为各大路由定制不同的控制器时,不需要声明控制器,即使用ng-controller=' '
+             	 controller:'ctrl'
+                })
+                .state('lists',{
+             	 url:'/lists',
+             	 template:'<h1>列表页</h1>',
+                })
+		}])
+		
+		m.controller('ctrl',['$scope','$state',function($scope,$state){
+			$scope.name = 'houdunren';
+			$scope.data = [
+			   {title:'java'},
+			   {title:'php'}
+			];
+			$scope.go = function(url){
+				$state.go(url);
+			}
+		}])
+		
+	</script>
+	</body>
+</html>

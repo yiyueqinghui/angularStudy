@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular的路由参数</title>
+		<script type="text/javascript" src="../js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+		<script type="text/javascript" src="../js/angular-ui-router.js" ></script>
+	</head>
+	<body>
+		<!--路由是在控制器之上-->
+		<div ng-app='hd'>
+                <div ui-view></div>
+		</div>
+	<script>
+		var m = angular.module('hd',['ui.router']);
+		m.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
+//          默认路由
+            $urlRouterProvider.otherwise('/home');
+//          定义路由规则
+             $stateProvider
+               .state('home',{
+             	 url:'/home',
+             	 templateUrl:'view/home.html',
+//           	 为各大路由定制不同的控制器时,不需要声明控制器,即使用ng-controller=' '
+             	 controller:'ctrl'
+                })
+                .state('lists',{
+//                 传递参数
+             	 url:'/lists/{id}',
+             	 template:'<h1>列表页姓名:{{user.name}}</h1>',
+             	 controller:'ctrl'
+                })
+		}])
+//		$stateParams注入服务,获取参数
+		m.controller('ctrl',['$scope','$stateParams',function($scope,$stateParams){
+			$scope.user = [
+			   {id:1,name:'chenjun'},
+			   {id:2,name:'gulinazha'}
+			];
+			
+			id = $stateParams.id;
+			alert(id);
+			if(id){
+				for(var i=0;i<$scope.user.length;i++){
+					if(id==$scope.user[i].id){
+						$scope.user = $scope.user[i];
+					}
+				}
+			}
+		}])
+		
+	</script>
+	</body>
+</html>

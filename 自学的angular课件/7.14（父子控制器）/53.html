@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>父控制器与自定义指令的共用父控制器数据时数据的变更情况</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		  <div ng-controller='ctrl1'>
+		      {{name}} 
+		      <input type="text" ng-model='name'  /> 
+		      	
+		      <br />
+		      <hdcms></hdcms>
+		  </div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC',
+				template:'{{name}}<input type="text" ng-model="name"  />',
+//				scope:true      scope为true时,会使的修改控制器的数据时不影响父级数据,但父级修改数据则会影响到控制器
+//				scope:false      scope为true时,会使的修改控制器的数据时不影响父级数据
+                scope:{}       // scope为{}时,控制器的数据与父级的数据互不影响
+			}
+		}])
+		m.controller('ctrl1',['$scope',function($scope){
+			$scope.name = '后盾人';
+			$scope.data = {age:12}
+		}])
+		
+	</script>
+</html>

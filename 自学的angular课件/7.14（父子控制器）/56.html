@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>scope 转义父级的方法</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd'>
+		  <div ng-controller='ctrl1'>
+		  	<h1 hdcms color='callback()'></h1>
+		  </div>
+		</div>
+	</body>
+	<script>
+		var m = angular.module('hd',[]);
+		m.directive('hdcms',[function(){
+			return {
+				restrict:'AEC',
+				template:'<span>{{color()}}</span> ',
+				scope:{color:"&"}        //& 调用父级的方法
+
+			}
+		}])
+		m.controller('ctrl1',['$scope',function($scope){
+			$scope.callback =function(){
+				return '后盾人';
+			}
+		}])
+		
+	</script>
+</html>

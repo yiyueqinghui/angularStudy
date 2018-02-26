@@ -1,0 +1,46 @@
+
+<html ng-app='hd'>
+	<head>
+		<meta charset="UTF-8" >
+		<title>父子控制器数据的传递</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-controller='parent' style="height: 200px;">
+			{{name}}  {{age}}
+			<hr />
+			<div ng-controller='son'>
+				{{age}} <input type="number" ng-model='age' /> <br />  <!--//子级把数据发送给父级后，彼此就互不影响；-->
+				{{name}}
+			</div>
+		</div>
+		<hr />
+		<div>
+			<img src="img/0.png"  />   <br />
+			<img src="img/1.png"  />   <br />
+			<img src="img/3.png"  />   <br />
+			<img src="img/4.png"  />   <br />
+			<img src="img/5.png"  />   <br />
+			<img src="img/7.png"  />   <br />
+		</div>
+		<script>
+			var a = angular.module('hd',[]);
+			a.controller('parent',['$scope',function($scope){
+				$scope.name = '陈军';
+				$scope.$on('call',function(event,data){             //父级接受子级传递过来的数据
+					$scope.age = data;                                
+				});
+				$scope.$broadcast('call',$scope.name);             //父级向下发送数据
+			}])
+			a.controller('son',['$scope',function($scope){
+				$scope.age = 25;
+				$scope.$emit('call',$scope.age);           //向父级发送数据
+				$scope.$on('call',function(event,data){    //子级接受父级发送的数据
+					$scope.name = data;
+				})
+			}])
+			
+//			注意: 不论谁向谁发送数据,最终数据的名称是不能改变的;同时指令call也是不能随便改变的
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>全选，取消</title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+			<table border="1" width="500">
+			   <tr>
+			   	   <td>
+			   	   	<input type="checkbox" ng-model='all'/>
+			   	   	<span ng-bind='all?"取消":"全选"'>全选</span>
+			   	   </td>
+			   	   <td>标题</td>
+			   	   <td>网址</td>
+			   </tr>
+			   <tr ng-repeat='v in user track by $index'>
+			   	   <td>
+			   	   	 <input type="checkbox"  ng-checked='all' />
+			   	   </td>
+			   	   <td>{{v.name}}</td>
+			   	   <td>{{v.url}}</td>
+			   </tr>
+			</table>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+             $scope.user=[
+             {name:'后盾人',url:'houdunren.com'},
+             {name:'后盾人',url:'houdunren.com'},
+             {name:'后盾人',url:'houdunren.com'}
+             ]
+		}])
+	</script>
+	</body>
+</html>

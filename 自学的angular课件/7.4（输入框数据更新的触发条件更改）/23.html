@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/angular.js" ></script>
+	</head>
+	<body>
+		<div ng-app='hd' ng-controller='ctrl'>
+		颜色：<input type="text" ng-model='color'>
+		大小：<input type="text " ng-model='size' />	
+		    <!--样式可以绑定变量，此处的第二个color就是变量（绑定上方input内输入的内容的color）-->
+		    <span ng-style="{color:color,fontSize:size+'px'}">wwiwieinv</span>
+		</div>
+	<script>
+		var m = angular.module('hd',[]);
+		m.controller('ctrl',['$scope',function($scope){
+
+		}])
+	</script>
+	</body>
+</html>
